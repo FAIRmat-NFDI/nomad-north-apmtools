@@ -1,6 +1,6 @@
 def test_importing_north_tool():
     # this will raise an exception if pydantic model validation fails for the north tool
-    from nomad_north_apmtools.north_tools.nomad_north_apmtools import (
+    from nomad_north_apmtools.north_tools.apmtools import (
         north_tool_entry_point,
     )
 
