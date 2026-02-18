@@ -1,0 +1,31 @@
+{
+  "template": "https://github.com/FAIRmat-NFDI/cookiecutter-nomad-plugin",
+  "commit": "521583b3e8b972c0c693a8735575cca0f100983e",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "full_name": "Markus Kühbach",
+      "email": "markus.kuehbach",
+      "github_username": "FAIRmat-NFDI",
+      "plugin_name": "nomad-north-apmtools",
+      "module_name": "nomad_north_apmtools",
+      "short_description": "NOMAD NORTH plugin for analysis of atom probe data",
+      "version": "0.1.0",
+      "license": "Apache Software License 2.0",
+      "include_schema_package": false,
+      "include_normalizer": false,
+      "include_parser": false,
+      "include_app": false,
+      "include_example_uploads": false,
+      "include_action": false,
+      "include_north_tools": true,
+      "north_tool_name": "apmtools",
+      "_copy_without_render": [
+        "*.html"
+      ],
+      "_template": "https://github.com/FAIRmat-NFDI/cookiecutter-nomad-plugin",
+      "_commit": "521583b3e8b972c0c693a8735575cca0f100983e"
+    }
+  },
+  "directory": null
+}
