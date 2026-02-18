@@ -5,7 +5,7 @@
   "context": {
     "cookiecutter": {
       "full_name": "Markus Kühbach",
-      "email": "markus.kuehbach",
+      "email": "markus.kuehbach@physik.hu-berlin.de",
       "github_username": "FAIRmat-NFDI",
       "plugin_name": "nomad-north-apmtools",
       "module_name": "nomad_north_apmtools",
