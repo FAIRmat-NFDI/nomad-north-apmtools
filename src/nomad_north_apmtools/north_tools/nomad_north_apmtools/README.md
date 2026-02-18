@@ -1,6 +1,6 @@
 # apmtools - NORTH tool
 
-This directory contains the configuration for the nionswift NORTH (NOMAD Remote Tools Hub) tool and NOMAD plugin.
+This directory contains the configuration for the apmtools NORTH (NOMAD Remote Tools Hub) tool and NOMAD plugin.
 
 ## Quick start
 
