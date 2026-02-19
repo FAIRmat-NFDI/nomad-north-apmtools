@@ -7,7 +7,7 @@ dependencies:
   - ipykernel
   - nomkl
   - apav
-  - paraprobe-toolbox
+  - paraprobe
   - compositionspace
   - pip
   # pip packages (installed into the same env)

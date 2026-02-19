@@ -10,7 +10,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 USER root
 
-RUN apt-get update \
+RUN apt update \
  && apt-get install --no-install-recommends -y \
         m4 \
         file \
