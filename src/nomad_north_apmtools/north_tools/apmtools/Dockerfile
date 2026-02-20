@@ -59,6 +59,6 @@ SHELL ["conda", "run", "-n", "apmtools", "/bin/bash", "-c"]
 
 WORKDIR "${HOME}"
 
-# Get rid ot the following message when you open a terminal in jupyterlab:
+# Get rid of the following message when you open a terminal in jupyterlab:
 # groups: cannot find name for group ID 11320
 RUN touch ${HOME}/.hushlogin
