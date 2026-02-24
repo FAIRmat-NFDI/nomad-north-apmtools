@@ -54,8 +54,11 @@ RUN conda run -n ${env_name} python -m ipykernel install --user --name="${env_na
     && fix-permissions "${CONDA_DIR}" \
     && fix-permissions "/home/${NB_USER}"
 
+RUN echo "\n# Automatically activate nionswift environment" >> "/home/${NB_USER}/.bashrc" \
+    && echo "conda activate nionswift" >>/home/${NB_USER}/.bashrc"
+
 # Optional: make env default for subsequent RUN commands
-SHELL ["conda", "run", "-n", "apmtools", "/bin/bash", "-c"]
+# SHELL ["conda", "run", "-n", "apmtools", "/bin/bash", "-c"]
 
 WORKDIR "${HOME}"
 
