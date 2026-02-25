@@ -15,7 +15,7 @@ ENV HOME=/home/${NB_USER}
 ENV CONDA_DIR=/opt/conda
 
 # low-level numerics and parallelization dependencies mainly for CGAL part of paraprobe-toolbox
-# and for apps with QT GUI needs apav, apyt, pyccapt, aptyzer
+# and for apps with QT GUI needs apav, apyt
 RUN apt update \
    && apt-get install --no-install-recommends -y \
         m4 \
@@ -41,16 +41,16 @@ COPY --chown=${NB_UID}:${NB_GID} "src/nomad_north_apmtools/north_tools/apmtools/
 # ARG env_name=apmtools
 RUN mamba env create -f "/tmp/environment.yml" \
     && mamba clean --all -f -y \
-    && rm -rf "/tmp/environment.yml" \
-    && mkdir -p "/tmp/aptyzer" \
-    && cd "/tmp/aptyzer" \
-    && git clone https://github.com/areichm/APTyzer.git \
-    && cd "APTyzer" \
-    && git checkout 39ab5e44c60f6f9e1c517f76b04914ac59e98bef \
-    && mkdir -p "${HOME}/aptyzer" \
-    && mv "/tmp/aptyzer/APTyzer/APTyzer_V_1_2o.ipynb" "${HOME}/aptyzer/aptyzer.ipynb" \
-    && chown ${NB_UID}:${NB_GID} "${HOME}/aptyzer/aptyzer.ipynb" \
-    && rm -rf "/tmp/aptyzer"
+    && rm -rf "/tmp/environment.yml"
+    # && mkdir -p "/tmp/aptyzer" \
+    # && cd "/tmp/aptyzer" \
+    # && git clone https://github.com/areichm/APTyzer.git \
+    # && cd "APTyzer" \
+    # && git checkout 39ab5e44c60f6f9e1c517f76b04914ac59e98bef \
+    # && mkdir -p "${HOME}/aptyzer" \
+    # && mv "/tmp/aptyzer/APTyzer/APTyzer_V_1_2o.ipynb" "${HOME}/aptyzer/aptyzer.ipynb" \
+    # && chown ${NB_UID}:${NB_GID} "${HOME}/aptyzer/aptyzer.ipynb" \
+    # && rm -rf "/tmp/aptyzer"
 
 # Register environment as Jupyter kernel
 RUN conda run -n apmtools python -m ipykernel install --user --name=apmtools \
@@ -65,7 +65,5 @@ RUN echo "\n# Automatically activate apmtools environment" >> "${HOME}/.bashrc" 
 USER ${NB_UID}
 WORKDIR "${HOME}"
 
-# Optional: make env default for subsequent RUN commands
-SHELL ["conda", "run", "-n", "apmtools", "/bin/bash", "-c"]
 
 
