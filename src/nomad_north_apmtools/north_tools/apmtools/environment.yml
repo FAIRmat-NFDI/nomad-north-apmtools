@@ -12,4 +12,4 @@ dependencies:
   # pip packages (installed into the same env)
   - pip:
       - apyt
-      - pyccapt
+      # - pyccapt

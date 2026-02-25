@@ -28,8 +28,6 @@ apmtools = NORTHTool(
 
     [compositionspace](https://github.com/eisenforschung/CompositionSpace)
 
-    [pyccapt](https://github.com/mehrpad/pyccapt)
-    
     [APyT](https://github.com/sebi-85/apyt)
 
     [APTyzer](https://github.com/areichm/APTyzer)""",
@@ -46,6 +44,8 @@ apmtools = NORTHTool(
     with_path=True,
     display_name='apmtools',
 )
+
+#    [pyccapt](https://github.com/mehrpad/pyccapt)
 
 north_tool_entry_point = NorthToolEntryPoint(
     id_url_safe='nomad_north_apmtools', north_tool=apmtools
