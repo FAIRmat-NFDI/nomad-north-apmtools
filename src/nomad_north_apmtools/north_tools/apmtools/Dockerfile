@@ -47,7 +47,8 @@ RUN mamba env create -f "/tmp/environment.yml" \
     && git clone https://github.com/areichm/APTyzer.git \
     && cd "APTyzer" \
     && git checkout 39ab5e44c60f6f9e1c517f76b04914ac59e98bef \
-    && cp "/tmp/aptyzer/APTyzer/APTyzer_V_1_2o.ipynb" "${HOME}/aptyzer/aptyzer.ipynb" \
+    && mkdir -p "${HOME}/aptyzer" \
+    && mv "/tmp/aptyzer/APTyzer/APTyzer_V_1_2o.ipynb" "${HOME}/aptyzer/aptyzer.ipynb" \
     && chown ${NB_UID}:${NB_GID} "${HOME}/aptyzer/aptyzer.ipynb" \
     && rm -rf "/tmp/aptyzer"
 
