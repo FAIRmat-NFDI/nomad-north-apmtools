@@ -12,6 +12,7 @@ USER root
 
 # with pre-existing NB_USER="jovyan" and NB_UID=100, NB_GID=1000
 ENV HOME=/home/${NB_USER}
+ENV CONDA_DIR=/opt/conda
 
 # low-level numerics and parallelization dependencies mainly for CGAL part of paraprobe-toolbox
 # and for apps with QT GUI needs apav, apyt, pyccapt, aptyzer
@@ -43,12 +44,15 @@ RUN mamba env create -f "/tmp/environment.yml" \
     && rm -rf "/tmp/environment.yml" \
     && mkdir -p "/tmp/aptyzer" \
     && cd "/tmp/aptyzer" \
+    && git clone https://github.com/areichm/APTyzer.git \
+    && cd "APTyzer" \
     && git checkout 39ab5e44c60f6f9e1c517f76b04914ac59e98bef \
     && cp "/tmp/aptyzer/APTyzer/APTyzer_V_1_2o.ipynb" "${HOME}/aptyzer/aptyzer.ipynb" \
+    && chown ${NB_UID}:${NB_GID} "${HOME}/aptyzer/aptyzer.ipynb" \
     && rm -rf "/tmp/aptyzer"
 
 # Register environment as Jupyter kernel
-RUN conda run -n ${env_name} python -m ipykernel install --user --name=apmtools \
+RUN conda run -n apmtools python -m ipykernel install --user --name=apmtools \
     && fix-permissions "${CONDA_DIR}" \
     && fix-permissions "${HOME}"
 
@@ -58,9 +62,9 @@ RUN echo "\n# Automatically activate apmtools environment" >> "${HOME}/.bashrc" 
 
 # Switch back to jovyan to avoid accidental container runs as root
 USER ${NB_UID}
+WORKDIR "${HOME}"
 
 # Optional: make env default for subsequent RUN commands
 SHELL ["conda", "run", "-n", "apmtools", "/bin/bash", "-c"]
 
-WORKDIR "${HOME}"
 
