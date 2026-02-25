@@ -19,20 +19,23 @@ from nomad.config.models.north import NORTHTool
 from nomad.config.models.plugins import NorthToolEntryPoint
 
 apmtools = NORTHTool(
-    image='ghcr.io/fairmat-nfdi/nomad-north-apmtools:v0.1.0',
+    image='ghcr.io/fairmat-nfdi/nomad-north-apmtools:latest',
     description="""### **apmtools**:
 
     [paraprobe-toolbox](https://gitlab.com/paraprobe/paraprobe-toolbox)
 
     [apav](https://gitlab.com/jesseds/apav)
 
-    [compositionspace](https://github.com/eisenforschung/CompositionSpace)""",
-    # [APTyzer](https://github.com/areichm/APTyzer)
-    # [pyccapt](https://github.com/mehrpad/pyccapt)
-    # [APyT](https://github.com/sebi-85/apyt)""",
+    [compositionspace](https://github.com/eisenforschung/CompositionSpace)
+
+    [pyccapt](https://github.com/mehrpad/pyccapt)
+    
+    [APyT](https://github.com/sebi-85/apyt)
+
+    [APTyzer](https://github.com/areichm/APTyzer)""",
     short_description='Jupyterlab with domain-specific open-source software for atom probe research',
     external_mounts=[],
-    file_extensions=['nxs, pos, epos, rng, rrng, apt, ipynb'],
+    file_extensions=['nxs, pos, epos, rng, rrng, apt, ato, raw, h5, hdf5, ipynb'],
     icon='jupyter.svg',
     image_pull_policy='Always',
     default_url='/lab',

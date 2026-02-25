@@ -10,5 +10,6 @@ dependencies:
   - compositionspace
   - pip
   # pip packages (installed into the same env)
-  # - pip:
-    # add more if needed
+  - pip:
+      - apyt
+      - pyccapt
