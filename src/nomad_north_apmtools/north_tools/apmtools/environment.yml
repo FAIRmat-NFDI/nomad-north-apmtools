@@ -1,0 +1,15 @@
+name: apmtools
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - ipykernel
+  - nomkl
+  - apav
+  - paraprobe
+  - compositionspace
+  - pip
+  # pip packages (installed into the same env)
+  - pip:
+      - apyt
+      # - pyccapt

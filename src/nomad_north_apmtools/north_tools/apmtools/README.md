@@ -4,7 +4,7 @@ This directory contains the configuration for the apmtools NORTH (NOMAD Remote T
 
 ## Quick start
 
-The apmtools NORTH tool provides a containerized environment defined in `NORTHtool` definition, a `NorthToolEntryPoint`, and a Dockerfile.
+The apmtools NORTH tool provides a containerized environment defined in a `NORTHTool` definition, a `NorthToolEntryPoint`, and a Dockerfile.
 
 ## Documentation
 
