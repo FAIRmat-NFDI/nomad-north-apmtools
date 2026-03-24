@@ -42,6 +42,7 @@ dev = [
     "pymdown-extensions",
     "mkdocs-click",
     "pytest-asyncio",
+    "cruft"
 ]
 [dependency-groups]
 north = [
