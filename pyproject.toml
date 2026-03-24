@@ -139,7 +139,7 @@ version_scheme = "no-guess-dev"
 local_scheme = "node-and-date"
 
 [project.entry-points.'nomad.plugin']
-north_tool_entry_point = "nomad_north_apmtools.north_tools.apmtools:north_tool_entry_point"
+north_entry_point = "nomad_north_apmtools.north_tools:north_entry_point"
 
 [tool.cruft]
 # Avoid updating workflow files, this leads to permissions issues

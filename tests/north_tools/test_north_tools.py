@@ -1,10 +1,9 @@
 def test_importing_north_tool():
-    # this will raise an exception if pydantic model validation fails for the north tool
-    from nomad_north_apmtools.north_tools.apmtools import (
-        north_tool_entry_point,
-    )
+    # this will raise an exception if pydantic model validation fails
+    from nomad_north_apmtools.north_tools import north_entry_point
 
+    expected_id = 'nomad-north-apmtools-apmtools'
     assert (
-        north_tool_entry_point.id_url_safe == 'nomad_north_apmtools'
-        or north_tool_entry_point.id == 'nomad-north-apmtools'
+        north_entry_point.id_url_safe == expected_id
+        or north_entry_point.id == 'nomad-north-nomad-north-apmtools'
     ), 'NORTHTool entry point has incorrect id or id_url_safe'
