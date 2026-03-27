@@ -11,7 +11,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_TAG: lab-3.6.2
-  NORTH_TOOL_DIR: src/nomad_north_apmtools/north_tools/apmtools_north_tool
+  NORTH_TOOL_DIR: src/nomad_north_apmtools/north_tools/apmtools
 
 permissions:
   packages: write
