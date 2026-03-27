@@ -1,7 +1,7 @@
 from nomad.config.models.north import NORTHTool
 from nomad.config.models.plugins import NorthToolEntryPoint
 
-apmtools = NORTHTool(
+apmtools_north_tool = NORTHTool(
     short_description='Use open source software for analyzing atom probe tomography data in NOMAD.',
     image='ghcr.io/fairmat-nfdi/nomad-north-apmtools:main',
     description="""### **apmtools**:
@@ -29,7 +29,7 @@ apmtools = NORTHTool(
 #    [APTyzer](https://github.com/areichm/APTyzer)
 #    [pyccapt](https://github.com/mehrpad/pyccapt)
 
-north_entry_point = NorthToolEntryPoint(
-    id_url_safe='nomad-north-apmtools-apmtools',
-    north_tool=apmtools,
+apmtools = NorthToolEntryPoint(
+    id_url_safe='apmtools',
+    north_tool=apmtools_north_tool,
 )
