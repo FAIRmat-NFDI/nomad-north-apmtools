@@ -20,7 +20,7 @@
       "include_action": false,
       "include_north_tools": true,
       "north_tool_name": "apmtools",
-      "include_citation_file": false,
+      "include_citation_file": true,
       "_copy_without_render": [
         "*.html",
         "*.png"
