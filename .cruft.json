@@ -11,7 +11,7 @@
       "module_name": "nomad_north_apmtools",
       "short_description": "NOMAD NORTH plugin for analysis of atom probe data",
       "version": "0.1.2",
-      "license": "Apache-2.0",
+      "license": "Apache Software License 2.0",
       "include_schema_package": false,
       "include_normalizer": false,
       "include_parser": false,
