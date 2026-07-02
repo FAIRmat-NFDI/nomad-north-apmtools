@@ -14,7 +14,7 @@ apmtools_north_tool = NORTHTool(
 
     [APyT](https://github.com/sebi-85/apyt)""",
     external_mounts=[],
-    file_extensions=['nxs, pos, epos, rng, rrng, apt, ato, raw, h5, hdf5, ipynb'],
+    file_extensions=['nxs', 'pos', 'epos', 'rng', 'rrng', 'apt', 'ato', 'raw', 'h5', 'hdf5', 'ipynb'],
     icon='https://raw.githubusercontent.com/FAIRmat-NFDI/nomad-north-apmtools/main/src/nomad_north_apmtools/north_tools/apmtools/jupyter.svg',
     image_pull_policy='Always',
     default_url='/lab',
