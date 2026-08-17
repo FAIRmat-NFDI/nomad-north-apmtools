@@ -1,6 +1,21 @@
 # nomad-north-apmtools
 
-NOMAD NORTH plugin for analysis of atom probe data
+NOMAD NORTH plugin for analysis of atom probe data.
+
+`nomad-north-apmtools` is a GUI-based NORTH tool offering software for research on atom probe
+microscopy. The tool bundles one version of
+[APTyzer](https://github.com/areichm/APTyzer) (a Jupyter
+Notebook by [A. Reichmann](https://pure.unileoben.ac.at/de/persons/alexander-reichmann/)
+for visually-guided composition analysis of atom-probe-reconstructed material volume), one
+version of [paraprobe](https://gitlab.com/paraprobe/) (a
+software by [M. Kühbach](https://doi.org/10.48550/arXiv.2205.13510) for Python- and Jupyter-Notebook-based scripting of data analyses for atom probe), and one
+version of [apav](https://apav.readthedocs.io/en/latest/index.html)
+(focusing on analyses of multi-hit and mass spectra, [J. Smith et al.](https://joss.theoj.org/papers/10.21105/joss.04862))
+via Python and Jupyter Notebooks.
+
+A summary of the specific data analyses offered by each tool of paraprobe is provided
+[here](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/apm-structure.html#cc-apm-structure).
+
 
 This `nomad` plugin was generated with `Cookiecutter` along with `@nomad`'s [`cookiecutter-nomad-plugin`](https://github.com/FAIRmat-NFDI/cookiecutter-nomad-plugin) template.
 
