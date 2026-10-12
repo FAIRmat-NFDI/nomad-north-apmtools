@@ -59,10 +59,18 @@ RUN cd "${HOME}" \
     && pip install -e "."
 
 RUN cd "${HOME}/paraprobe-toolbox" \
-    && chmod +x ".scripts/linux/*" \
+    && chmod +x ".scripts/linux/build.sh" \
+    && chmod +x ".scripts/linux/install.sh" \
     && .scripts/linux/build.sh \
     && .scripts/linux/install.sh \
-    && chmod +x ".code/paraprobe_*"
+    && chmod +x ".code/paraprobe_ranger \
+               .code/paraprobe_selector \
+               .code/paraprobe_surfacer \
+               .code/paraprobe_distancer \
+               .code/paraprobe_tessellator \
+               .code/paraprobe_spatstat \
+               .code/paraprobe_nanochem \
+               .code/paraprobe_intersector
 
 RUN fix-permissions "${HOME}/paraprobe-toolbox" \
     && chown -R ${NB_UID}:${NB_GID} "${HOME}/paraprobe-toolbox"
