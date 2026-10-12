@@ -1,3 +1,12 @@
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+![](https://github.com/FAIRmat-NFDI/nomad-north-apmtools/actions/workflows/actions.yml/badge.svg)
+![](https://github.com/FAIRmat-NFDI/nomad-north-apmtools/actions/workflows/publish.yml/badge.svg)
+![](https://github.com/FAIRmat-NFDI/nomad-north-apmtools/actions/workflows/mkdocs-deploy.yml/badge.svg)
+![](https://img.shields.io/pypi/pyversions/nomad-north-apmtools)
+![](https://img.shields.io/pypi/l/nomad-north-apmtools)
+![](https://img.shields.io/pypi/v/nomad-north-apmtools)
+[![DOI with Zenodo](https://img.shields.io/badge/DOI-10.5281/zenodo.19473947-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.19473947)
+
 # nomad-north-apmtools
 
 NOMAD NORTH plugin for analysis of atom probe data.
@@ -7,21 +16,21 @@ microscopy. The tool bundles one version of
 [APTyzer](https://github.com/areichm/APTyzer) (a Jupyter
 Notebook by [A. Reichmann](https://pure.unileoben.ac.at/de/persons/alexander-reichmann/)
 for visually-guided composition analysis of atom-probe-reconstructed material volume), one
-version of [paraprobe](https://gitlab.com/paraprobe/) (a
+version of [paraprobe-toolbox](https://gitlab.com/paraprobe/paraprobe-toolbox) (a
 software by [M. Kühbach](https://doi.org/10.48550/arXiv.2205.13510) for Python- and Jupyter-Notebook-based scripting of data analyses for atom probe), and one
 version of [apav](https://apav.readthedocs.io/en/latest/index.html)
 (focusing on analyses of multi-hit and mass spectra, [J. Smith et al.](https://joss.theoj.org/papers/10.21105/joss.04862))
 via Python and Jupyter Notebooks.
 
-A summary of the specific data analyses offered by each tool of paraprobe is provided
-[here](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/apm-structure.html#cc-apm-structure).
+A summary of the specific data analyses offered by each tool of paraprobe-toolbox is provided
+[here](https://paraprobe.gitlab.io/paraprobe-toolbox/).
 
 
 This `nomad` plugin was generated with `Cookiecutter` along with `@nomad`'s [`cookiecutter-nomad-plugin`](https://github.com/FAIRmat-NFDI/cookiecutter-nomad-plugin) template.
 
 ## Development
 
-If you want to develop locally this plugin, clone the project and in the plugin folder, create a virtual environment (you can use Python 3.10, 3.11 or 3.12):
+If you want to develop locally this plugin, clone the project and in the plugin folder, create a virtual environment (you can use Python 3.11 or 3.12):
 
 ```sh
 git clone https://github.com/FAIRmat-NFDI/nomad-north-apmtools.git
