@@ -60,6 +60,30 @@ RUN conda run -n apmtools python -m ipykernel install --user --name=apmtools \
 RUN echo "\n# Automatically activate apmtools environment" >> "${HOME}/.bashrc" \
     && echo "conda activate apmtools" >>"${HOME}/.bashrc" \
     && chown ${NB_UID}:${NB_GID} "${HOME}/.bashrc"
+    
+RUN cd "${HOME}" \
+    && git clone --recurse-submodules https://gitlab.com/paraprobe/paraprobe-toolbox.git \
+    && cd "paraprobe-toolbox" \
+    && git checkout v0.6.0 \
+    && git submodule sync --recursive \
+    && git submodule update --init --recursive
+    
+RUN cd "${HOME}/paraprobe-toolbox" \ 
+    && conda run pip install -e "./code/thirdparty/mandatory/pynxtools-apm[dev,docs,ipynb,batch]" \
+    && conda run pip install -e ".[dev,docs]"
+
+RUN mkdir -p "${CONDA_DIR}/lib/hdf5/plugin" \
+    && cp "${CONDA_DIR}/lib/python3.12/site-packages/hdf5plugin/plugins/*.so" "${CONDA_PREFIX}/lib/hdf5/plugin/" \
+    && fix-permissions "${CONDA_DIR}"
+
+RUN cd "${HOME}/paraprobe-toolbox" \
+    && chmod +x ".scripts/linux/*" \
+    && ./scripts/linux/build.sh \
+    && ./scripts/linux/install.sh \
+    && chmod +x "${HOME}/paraprobe-toolbox/code/paraprobe_*"
+    
+RUN fix-permissions "${HOME}/paraprobe-toolbox" \
+    && chown -R ${NB_UID}:${NB_GID} "${HOME}/paraprobe-toolbox"
 
 # Switch back to jovyan to avoid accidental container runs as root
 USER ${NB_UID}
