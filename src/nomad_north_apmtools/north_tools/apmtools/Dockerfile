@@ -59,10 +59,10 @@ RUN cd "${HOME}" \
     && pip install -e "."
 
 RUN cd "${HOME}/paraprobe-toolbox" \
-    && chmod +x "./scripts/linux/*" \
-    && ./scripts/linux/build.sh \
-    && ./scripts/linux/install.sh \
-    && chmod +x "./code/paraprobe_*"
+    && chmod +x ".scripts/linux/*" \
+    && .scripts/linux/build.sh \
+    && .scripts/linux/install.sh \
+    && chmod +x ".code/paraprobe_*"
 
 RUN fix-permissions "${HOME}/paraprobe-toolbox" \
     && chown -R ${NB_UID}:${NB_GID} "${HOME}/paraprobe-toolbox"
