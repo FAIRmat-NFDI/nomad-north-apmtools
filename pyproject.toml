@@ -140,3 +140,7 @@ apmtools = "nomad_north_apmtools.north_tools:apmtools"
 [tool.cruft]
 # Avoid updating workflow files, this leads to permissions issues
 skip = [".github/*"]
+
+[tool.setuptools_scm]
+version_scheme = "no-guess-dev"
+local_scheme = "node-and-date"
