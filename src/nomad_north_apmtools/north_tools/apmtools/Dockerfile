@@ -61,8 +61,8 @@ RUN cd "${HOME}" \
 RUN cd "${HOME}/paraprobe-toolbox" \
     && chmod +x "scripts/linux/build.sh" \
     && chmod +x "scripts/linux/install.sh" \
-    && .scripts/linux/build.sh \
-    && .scripts/linux/install.sh \
+    && ./scripts/linux/build.sh \
+    && ./scripts/linux/install.sh \
     && chmod +x "code/paraprobe_ranger" \
                "code/paraprobe_selector" \
                "code/paraprobe_surfacer" \
