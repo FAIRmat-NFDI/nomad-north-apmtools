@@ -3,13 +3,37 @@ channels:
   - conda-forge
 dependencies:
   - python=3.12
+  - pip
+  - git
   - ipykernel
   - nomkl
+  # paraprobe v0.4.1 via conda-forge recipe
+  # - paraprobe v0.6.0 build-essentials and low-level tools via conda-forge!
+  - cmake >=3.30
+  - gxx_linux-64 >=16.2.0
+  - gmp
+  - mpfr
+  - hdf5 ==2.2.0
+  - zlib-ng ==2.3.3
+  - hdf5plugin ==7.1.0
+  - c-blosc2
+  - eigen ==5.0.1
+  - mpich
+  - openssl
+  - libboost-devel <1.92.0
+  - libboost <1.92.0
+  - cgal-cpp ==6.2.1
+  - hdbscan
+  # bring these through pynxtools-apm
+  # - jupyterlab
+  # - jupyterlab-h5web
+  # other packages
   - apav
-  - paraprobe
   - compositionspace
-  - pip
   # pip packages (installed into the same env)
   - pip:
       - apyt
       # - pyccapt
+
+
+

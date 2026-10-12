@@ -16,17 +16,17 @@ ENV CONDA_DIR=/opt/conda
 
 # low-level numerics and parallelization dependencies mainly for CGAL part of paraprobe-toolbox
 # and for apps with QT GUI needs apav, apyt
+#         build-essential \
+#         mpich \
+#         libgmp-dev \
+#         libmpfr-dev \
+#         libssl-dev \
+#         hwloc \
+#         git \
 RUN apt update \
    && apt-get install --no-install-recommends -y \
         m4 \
         file \
-        build-essential \
-        mpich \
-        libgmp-dev \
-        libmpfr-dev \
-        libssl-dev \
-        hwloc \
-        git \
         wget \
         libgl1 \
         libglu1-mesa \
@@ -64,6 +64,4 @@ RUN echo "\n# Automatically activate apmtools environment" >> "${HOME}/.bashrc" 
 # Switch back to jovyan to avoid accidental container runs as root
 USER ${NB_UID}
 WORKDIR "${HOME}"
-
-
 
