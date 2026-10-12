@@ -4,8 +4,6 @@ ARG PLUGIN_NAME=nomad-north-apmtools
 
 FROM ${BASE_IMAGE}:${IMAGE_TAG} AS base
 
-# Fix: https://github.com/hadolint/hadolint/wiki/DL4006
-# Fix: https://github.com/koalaman/shellcheck/wiki/SC3014
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 USER root
@@ -13,17 +11,9 @@ USER root
 # with pre-existing NB_USER="jovyan" and NB_UID=100, NB_GID=1000
 ENV HOME=/home/${NB_USER}
 ENV CONDA_DIR=/opt/conda
+ENV CONDA_PREFIX=/opt/conda/envs/apmtools
 
-# low-level numerics and parallelization dependencies mainly for CGAL part of paraprobe-toolbox
-# and for apps with QT GUI needs apav, apyt
-#         build-essential \
-#         mpich \
-#         libgmp-dev \
-#         libmpfr-dev \
-#         libssl-dev \
-#         hwloc \
-#         git \
-RUN apt update \
+RUN apt-get update \
    && apt-get install --no-install-recommends -y \
         m4 \
         file \
@@ -35,12 +25,14 @@ RUN apt update \
 
 COPY --chown=${NB_UID}:${NB_GID} "src/nomad_north_apmtools/north_tools/apmtools/environment.yml" "/tmp/environment.yml"
 COPY --chown=${NB_UID}:${NB_GID} "src/nomad_north_apmtools/north_tools/apmtools/example" "${HOME}/example"
-# see nomad-north-nionswift plugins Dockerfile on how to possibly make that copy layering slimmer
 
-# Create the named environment with packages as mentioned in the environment.yml file, clear mamba cache
-# ARG env_name=apmtools
 RUN mamba env create -f "/tmp/environment.yml" \
     && mamba clean --all -f -y \
+    && conda run -n apmtools python -m ipykernel install --user --name=apmtools \
+    && mkdir -p "${CONDA_PREFIX}/lib/hdf5/plugin" \
+    && cp ${CONDA_PREFIX}/lib/python3.12/site-packages/hdf5plugin/plugins/*.so "${CONDA_PREFIX}/lib/hdf5/plugin/" \
+    && fix-permissions "${CONDA_DIR}" \
+    && fix-permissions "${CONDA_PREFIX}" \
     && rm -rf "/tmp/environment.yml"
     # && mkdir -p "/tmp/aptyzer" \
     # && cd "/tmp/aptyzer" \
@@ -52,40 +44,28 @@ RUN mamba env create -f "/tmp/environment.yml" \
     # && chown ${NB_UID}:${NB_GID} "${HOME}/aptyzer/aptyzer.ipynb" \
     # && rm -rf "/tmp/aptyzer"
 
-# Register environment as Jupyter kernel
-RUN conda run -n apmtools python -m ipykernel install --user --name=apmtools \
-    && fix-permissions "${CONDA_DIR}" \
-    && fix-permissions "${HOME}"
+ENV PATH=${CONDA_PREFIX}/bin:${PATH}
 
-RUN echo "\n# Automatically activate apmtools environment" >> "${HOME}/.bashrc" \
-    && echo "conda activate apmtools" >>"${HOME}/.bashrc" \
+RUN echo "conda activate apmtools" >> "${HOME}/.bashrc" \
     && chown ${NB_UID}:${NB_GID} "${HOME}/.bashrc"
-    
+
 RUN cd "${HOME}" \
     && git clone --recurse-submodules https://gitlab.com/paraprobe/paraprobe-toolbox.git \
-    && cd "paraprobe-toolbox" \
+    && cd "${HOME}/paraprobe-toolbox" \
     && git checkout v0.6.0 \
     && git submodule sync --recursive \
-    && git submodule update --init --recursive
-    
-RUN cd "${HOME}/paraprobe-toolbox" \ 
-    && conda run pip install -e "./code/thirdparty/mandatory/pynxtools-apm[dev,docs,ipynb,batch]" \
-    && conda run pip install -e ".[dev,docs]"
-
-RUN mkdir -p "${CONDA_DIR}/lib/hdf5/plugin" \
-    && cp "${CONDA_DIR}/lib/python3.12/site-packages/hdf5plugin/plugins/*.so" "${CONDA_PREFIX}/lib/hdf5/plugin/" \
-    && fix-permissions "${CONDA_DIR}"
+    && git submodule update --init --recursive \
+    && pip install -e "./code/thirdparty/mandatory/pynxtools-apm[ipynb,batch]" \
+    && pip install -e "."
 
 RUN cd "${HOME}/paraprobe-toolbox" \
-    && chmod +x ".scripts/linux/*" \
+    && chmod +x "./scripts/linux/*" \
     && ./scripts/linux/build.sh \
     && ./scripts/linux/install.sh \
-    && chmod +x "${HOME}/paraprobe-toolbox/code/paraprobe_*"
-    
+    && chmod +x "./code/paraprobe_*"
+
 RUN fix-permissions "${HOME}/paraprobe-toolbox" \
     && chown -R ${NB_UID}:${NB_GID} "${HOME}/paraprobe-toolbox"
 
-# Switch back to jovyan to avoid accidental container runs as root
 USER ${NB_UID}
 WORKDIR "${HOME}"
-
