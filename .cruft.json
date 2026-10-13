@@ -1,7 +1,7 @@
 {
   "template": "https://github.com/FAIRmat-NFDI/cookiecutter-nomad-plugin",
-  "commit": "ae953b0ba24e2df26daf5d641faeaaebb1d8aba2",
-  "checkout": "ae953b0ba24e2df26daf5d641faeaaebb1d8aba2",
+  "commit": "b67d40d4d5d4be4a639baa56ecf9af41f1680830",
+  "checkout": null,
   "context": {
     "cookiecutter": {
       "full_name": "Markus Kühbach",
@@ -18,15 +18,17 @@
       "include_app": false,
       "include_example_uploads": false,
       "include_action": false,
+      "include_api": false,
       "include_north_tools": true,
       "north_tool_name": "apmtools",
+      "include_dashboard": false,
       "include_citation_file": true,
       "_copy_without_render": [
         "*.html",
         "*.png"
       ],
       "_template": "https://github.com/FAIRmat-NFDI/cookiecutter-nomad-plugin",
-      "_commit": "ae953b0ba24e2df26daf5d641faeaaebb1d8aba2"
+      "_commit": "b67d40d4d5d4be4a639baa56ecf9af41f1680830"
     }
   },
   "directory": null
