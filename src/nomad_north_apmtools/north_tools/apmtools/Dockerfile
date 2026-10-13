@@ -59,7 +59,7 @@ RUN cd "${HOME}" \
     && pip install -e "."
 
 RUN cd "${HOME}/paraprobe-toolbox" \
-    && sed -i 's|paraprobe-toolbox-linux-gnu-py3.12|apmtools|g' "scripts/linux/build.sh" \
+    && sed -i 's/paraprobe-toolbox-linux-gnu-py3.12/apmtools/g' "scripts/linux/build.sh" \
     && chmod +x "scripts/linux/build.sh" \
     && chmod +x "scripts/linux/install.sh" \
     && ./scripts/linux/build.sh \
