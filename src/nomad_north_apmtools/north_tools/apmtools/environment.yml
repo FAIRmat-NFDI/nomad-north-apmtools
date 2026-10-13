@@ -10,9 +10,10 @@ dependencies:
   # paraprobe v0.4.1 via conda-forge recipe
   # - paraprobe v0.6.0 build-essentials and low-level tools via conda-forge!
   - cmake >=3.30
-  - make
+  # - make
   - ninja
-  - gxx_linux-64 >=16.2.0
+  - compilers
+  # - gxx_linux-64 >=16.2.0
   - gmp
   - mpfr
   - hdf5 ==2.2.0
