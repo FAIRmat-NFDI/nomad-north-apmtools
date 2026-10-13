@@ -34,15 +34,8 @@ RUN mamba env create -f "/tmp/environment.yml" \
     && fix-permissions "${CONDA_DIR}" \
     && fix-permissions "${CONDA_PREFIX}" \
     && rm -rf "/tmp/environment.yml"
-    # && mkdir -p "/tmp/aptyzer" \
-    # && cd "/tmp/aptyzer" \
-    # && git clone https://github.com/areichm/APTyzer.git \
-    # && cd "APTyzer" \
-    # && git checkout 39ab5e44c60f6f9e1c517f76b04914ac59e98bef \
-    # && mkdir -p "${HOME}/aptyzer" \
-    # && mv "/tmp/aptyzer/APTyzer/APTyzer_V_1_2o.ipynb" "${HOME}/aptyzer/aptyzer.ipynb" \
-    # && chown ${NB_UID}:${NB_GID} "${HOME}/aptyzer/aptyzer.ipynb" \
-    # && rm -rf "/tmp/aptyzer"
+
+# see v0.1.4 on how to add A. Reichmann's aptyzer but dropped it because is no longer maintained
 
 ENV PATH=${CONDA_PREFIX}/bin:${PATH}
 
@@ -52,7 +45,7 @@ RUN echo "conda activate apmtools" >> "${HOME}/.bashrc" \
 RUN cd "${HOME}" \
     && git clone --recurse-submodules https://gitlab.com/paraprobe/paraprobe-toolbox.git \
     && cd "${HOME}/paraprobe-toolbox" \
-    && git checkout "fix_nexus_definitions" \
+    && git checkout "main" \
     && git submodule sync --recursive \
     && git submodule update --init --recursive \
     && pip install -e "./code/thirdparty/mandatory/pynxtools-apm[ipynb,batch]" \
@@ -70,10 +63,11 @@ RUN cd "${HOME}/paraprobe-toolbox" \
                "code/paraprobe_tessellator" \
                "code/paraprobe_spatstat" \
                "code/paraprobe_nanochem" \
-               "code/paraprobe_intersector"
-
-RUN fix-permissions "${HOME}/paraprobe-toolbox" \
+               "code/paraprobe_intersector" \
+    && fix-permissions "${HOME}/paraprobe-toolbox" \
     && chown -R ${NB_UID}:${NB_GID} "${HOME}/paraprobe-toolbox"
+
+# && rm -rf "code/utils/build" \
 
 USER ${NB_UID}
 WORKDIR "${HOME}"
