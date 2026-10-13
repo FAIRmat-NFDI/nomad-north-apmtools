@@ -52,17 +52,16 @@ RUN echo "conda activate apmtools" >> "${HOME}/.bashrc" \
 RUN cd "${HOME}" \
     && git clone --recurse-submodules https://gitlab.com/paraprobe/paraprobe-toolbox.git \
     && cd "${HOME}/paraprobe-toolbox" \
-    && git checkout v0.6.0 \
+    && git checkout "fix_nexus_definitions" \
     && git submodule sync --recursive \
     && git submodule update --init --recursive \
     && pip install -e "./code/thirdparty/mandatory/pynxtools-apm[ipynb,batch]" \
     && pip install -e "."
 
 RUN cd "${HOME}/paraprobe-toolbox" \
-    && sed -i 's/paraprobe-toolbox-linux-gnu-py3.12/apmtools/g' "scripts/linux/build.sh" \
     && chmod +x "scripts/linux/build.sh" \
     && chmod +x "scripts/linux/install.sh" \
-    && ./scripts/linux/build.sh \
+    && ./scripts/linux/build.sh "${CONDA_PREFIX}" \
     && ./scripts/linux/install.sh \
     && chmod +x "code/paraprobe_ranger" \
                "code/paraprobe_selector" \
